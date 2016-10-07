@@ -21,12 +21,10 @@ public class NumbCon{
 			case 9: System.out.println("Девять");
 			break;
 		}
-		
-
 	}
 	public static void getSecond(int numb){
 		switch (numb){
-			case 1: System.out.println("00");
+			case 1: getElse(numb%10);
 			break;
 			case 2: System.out.println("Двадцать");
 			break;
@@ -46,21 +44,70 @@ public class NumbCon{
 			break;
 		}
 	}
+	public static void getFirst(int numb){
+		switch (numb){
+			case 1: System.out.println("Сто");
+			break;
+			case 2: System.out.println("Двести");
+			break;
+			case 3: System.out.println("Триста");
+			break;
+			case 4: System.out.println("Четыреста");
+			break;
+			case 5: System.out.println("Пятьсот");
+			break;
+			case 6: System.out.println("Шестьсот");
+			break;
+			case 7: System.out.println("Семьсот");
+			break;
+			case 8: System.out.println("Восемьсот");
+			break;
+			case 9: System.out.println("Девятьсот");
+			break;
+		}
+	}
+		public static void getElse(int numb){
+		switch (numb){
+			case 0: System.out.println("Десять");
+			break;
+			case 1: System.out.println("Одиннадцать");
+			break;
+			case 2: System.out.println("Двеннадцать");
+			break;
+			case 3: System.out.println("Тринадцать");
+			break;
+			case 4: System.out.println("Четырнадцать");
+			break;
+			case 5: System.out.println("Пятьнадцать");
+			break;
+			case 6: System.out.println("Шестьнадцать");
+			break;
+			case 7: System.out.println("Семьнадцать");
+			break;
+			case 8: System.out.println("Восемьнадцать");
+			break;
+			case 9: System.out.println("Девятьнадцать");
+			break;
+		}
+	}
 	public static void main(String[] args) {
 		int numb = 0;
 		if(args.length > 0){
 			numb = Integer.parseInt(args[0]);  
 		}
-		if(numb<100){
-			switch(numb/10){
-				case 0: getLast(numb);
-				break;
-				default: getSecond(numb/10);
+		if(numb>=100){
+			getFirst(numb/100);
+			getSecond((numb/10)%10);
+			getLast(numb%10);
+		}else{
+			if(numb>=10 ){
+				getSecond(numb/10);
 				getLast(numb%10);
-				break;
-
+			}else{
+				getLast(numb%10);
 			}
 		}
+		
     	//System.out.println(String.valueOf(Math.abs(numb)).length());
 	}
 }
