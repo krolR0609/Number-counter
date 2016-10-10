@@ -1,28 +1,33 @@
+import java.util.ArrayList;
+
 public class NumbCon{
+
 	static String result = "";
+	
 	public static void getLast(int numb){
 		switch ((numb%100)%10){
-			case 1: result += "Один";
+			case 1: result += "Один ";
 			break;
-			case 2: result += "Два"; 
+			case 2: result += "Два "; 
 			break;
-			case 3: result += "Три";
+			case 3: result += "Три ";
 			break;
-			case 4: result += "Четыре";
+			case 4: result += "Четыре ";
 			break;
-			case 5: result += "Пять";
+			case 5: result += "Пять ";
 			break;
-			case 6: result += "Шесть";
+			case 6: result += "Шесть ";
 			break;
-			case 7: result += "Семь";
+			case 7: result += "Семь ";
 			break;
-			case 8: result += "Восемь";
+			case 8: result += "Восемь ";
 			break;
-			case 9: result += "Девять";
+			case 9: result += "Девять ";
 			break;
 		}
 		
 	}
+
 	public static void getSecond(int numb){
 		switch ((numb%100)/10){
 			case 0: getLast(numb);
@@ -47,6 +52,7 @@ public class NumbCon{
 			break;
 		}
 	}
+
 	public static void getFirst(int numb){
 		switch (numb/100){
 			case 1: result += "Сто ";
@@ -69,6 +75,7 @@ public class NumbCon{
 			break;
 		}
 	}
+
 	public static void getElse(int numb){
 		switch (numb%10){
 			case 0: result += "Десять ";
@@ -93,23 +100,42 @@ public class NumbCon{
 			break;
 		}
 	}
+
+	public static void getWords(int numb){
+		result += " \n ";
+		getFirst(numb);
+		getSecond(numb);
+
+		if((numb%100) > 19){
+			getLast(numb);
+		}
+
+	}
+	
 	public static void main(String[] args) {
+		ArrayList<Integer> list = new ArrayList<Integer>();
 		int numb = 0;
+
 		if(args.length > 0){
 			numb = Integer.parseInt(args[0]); 
 			if(numb > 999 || numb < 1){
 				System.out.println("Out of range");
 			}else {
-				getFirst(numb);
-				getSecond(numb);
-				if((numb%100) > 19){
-					getLast(numb);
-				}
+				getWords(numb);
 			}
 			System.out.println("Вы ввели - " + numb);
 			System.out.println(result);
 		}else {
-			System.out.println("Enter the data\nlike: java NumbCon 12");
+			for(int zero = 0; zero < 50; zero++){
+				double randNumber = Math.random();
+				double d = randNumber * 1000;
+				int randomInt = (int)d + 1;
+				list.add(randomInt);
+			}
+			for(int n : list){
+				getWords(n);
+			}
+			System.out.println(result);
 			System.out.println("===========================================\n Compile with -encoding utf8\n===========================================");
 		}
 	}
